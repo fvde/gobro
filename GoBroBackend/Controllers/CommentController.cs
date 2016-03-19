@@ -39,6 +39,14 @@ namespace GoBroBackend.Controllers
             comment.Content = content;
             context.Comments.Add(comment);
 
+            // increase number of comments
+            // TODO is this atomic?
+            var entry = context.Entries.FirstOrDefault(i => i.Id == entryid);
+            if (entry != null)
+            {
+                entry.NumberOfComments += 1;
+            }
+
             // store
             await context.SaveChangesAsync();
 

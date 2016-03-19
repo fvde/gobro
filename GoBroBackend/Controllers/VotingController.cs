@@ -33,11 +33,11 @@ namespace GoBroBackend.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
-            var item = context.Entries.FirstOrDefault(i => i.Id == entryid);
-
-            if (item != null)
+            // TODO is this atomic?
+            var entry = context.Entries.FirstOrDefault(i => i.Id == entryid);
+            if (entry != null)
             {
-                item.Votes += vote;
+                entry.Votes += vote;
                 await context.SaveChangesAsync();
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }

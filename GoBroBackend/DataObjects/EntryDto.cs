@@ -17,5 +17,6 @@ namespace GoBroBackend.DataObjects
         public string ImageUri { get; set; }
         public string Content { get; set; }
         public int Votes { get; set; }
+        public int NumberOfComments { get; set; }
     }
 }
