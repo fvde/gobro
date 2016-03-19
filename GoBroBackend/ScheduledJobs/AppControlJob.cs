@@ -65,7 +65,7 @@ namespace GoBroBackend.ScheduledJobs
 
             foreach (Group g in groups)
             {
-                if (DateTimeOffset.Now - g.LastChallengeChange > TimeSpan.FromDays(1) - TimeSpan.FromSeconds(30))
+                if (DateTimeOffset.Now - g.LastChallengeChange > TimeSpan.FromMinutes(60) - TimeSpan.FromSeconds(30))
                 {
                     var challenges = g.Challenges.ToList();
 
@@ -75,7 +75,7 @@ namespace GoBroBackend.ScheduledJobs
                         var builtInChallenges = context.Challenges.Where(c => c.IsUserGenerated == false);
                         challenges = challenges.Concat(builtInChallenges).ToList();
                     }
-
+                    
                     var nextChallenge = challenges.Skip(Math.Min(random.Next(challenges.Count()), challenges.Count())).FirstOrDefault();
 
                     g.PastChallenges.Add(g.CurrentChallenge);
