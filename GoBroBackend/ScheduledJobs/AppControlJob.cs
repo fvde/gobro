@@ -69,7 +69,7 @@ namespace GoBroBackend.ScheduledJobs
                 {
                     var challenges = g.Challenges.ToList();
 
-                    if (challenges.Count() == 0)
+                    if (!challenges.Any())
                     {
                         // if we dont have any challenges use the built in ones
                         var builtInChallenges = context.Challenges.Where(c => c.IsUserGenerated == false);

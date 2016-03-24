@@ -81,6 +81,12 @@ namespace GoBroBackend.Controllers
             context.Challenges.Add(newItem);
             group.Challenges.Add(newItem);
 
+            // Set the new challenge as currently active challenge if there is no other
+            if (group.CurrentChallenge == null)
+            {
+                group.CurrentChallenge = newItem;
+            }
+
             // store
             await context.SaveChangesAsync();
 
